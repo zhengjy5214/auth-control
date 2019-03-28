@@ -2,6 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
     <typeAliases>
         <typeAlias alias="Permission" type="com.test.entity.Permission"/>
         <typeAlias alias="Role" type="com.test.entity.Role"/>
@@ -9,4 +10,5 @@
         <typeAlias alias="User" type="com.test.entity.User"/>
         <typeAlias alias="UserRole" type="com.test.entity.UserRole"/>
     </typeAliases>
+
 </configuration>

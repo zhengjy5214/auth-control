@@ -91,7 +91,7 @@
                 /index=authc
                 /user/login=authc<!-- 使用authc -->
                 /logout=logout
-                /static/**=anon<!-- 静态资源文件访问 -->
+                /static/**=anon<!-- 静态资源文件访问 直接访问 -->
                 /**=user
             </value>
         </property>

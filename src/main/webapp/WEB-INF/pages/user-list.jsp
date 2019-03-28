@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,7 +35,10 @@
           <h1 class="page-header">用户列表</h1>
           <div class="row placeholders">
           	<div>
-                <button type="button" class="btn btn-warning delete-query" data-toggle="modal" data-target="#delete-confirm-dialog">删除所选</button>
+                <shiro:hasPermission name="user:delete">
+                    <button type="button" class="btn btn-warning delete-query" data-toggle="modal" data-target="#delete-confirm-dialog">删除所选</button>
+                </shiro:hasPermission>
+
                 <!--  删除所选对话框 -->
                 <div class="modal fade " id="delete-confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                   <div class="modal-dialog modal-sm" role="document">
@@ -52,8 +57,10 @@
                     </div>
                   </div>
                 </div>
-                <button type="button" class="btn btn-primary show-user-form" data-toggle="modal" data-target="#add-user-form">添加新用户</button>
-                <!--添加新用户表单-->
+                <shiro:hasPermission name="user:add">
+                    <button type="button" class="btn btn-primary show-user-form" data-toggle="modal" data-target="#add-user-form">添加新用户</button>
+                </shiro:hasPermission>
+                    <!--添加新用户表单-->
                 <div class="modal fade " id="add-user-form" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                   <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
@@ -108,11 +115,19 @@
                 		<td><input type="checkbox" name="userIds" value="${user.userId }"/></td>
                 		<td class="userid">${user.userId }</td>
                 		<td class="username">${user.userName }</td>
-                		<td><a href="javascript:void(0);" class="show-user-roles" >显示所有角色</a></td>
-	                    <td>
-	                    	<a class="glyphicon glyphicon-wrench show-userrole-form" aria-hidden="true" title="修改所有角色" href="javascript:void(0);" data-toggle="modal" data-target="#update-userrole-dialog"></a>
-	                    	<a class="glyphicon glyphicon-remove delete-this-user" aria-hidden="true" title="删除用户" href="javascript:void(0);"></a>
-	                    </td>
+                        <td>
+                            <shiro:hasPermission name="user:showroles">
+                                <a href="javascript:void(0);" class="show-user-roles" >显示所有角色</a>
+                            </shiro:hasPermission>
+                        </td>
+                        <td>
+                            <shiro:hasPermission name="user:corelationrole">
+                                <a class="glyphicon glyphicon-wrench show-userrole-form" aria-hidden="true" title="修改所有角色" href="javascript:void(0);" data-toggle="modal" data-target="#update-userrole-dialog"></a>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="user:delete">
+	                    	    <a class="glyphicon glyphicon-remove delete-this-user" aria-hidden="true" title="删除用户" href="javascript:void(0);"></a>
+                            </shiro:hasPermission>
+                        </td>
                 	</tr>
                 </c:forEach>
             </table>

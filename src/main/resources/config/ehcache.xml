@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache name="shiroCache" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
-   xsi:noNamespaceSchemaLocation="ehcache.xsd">
+<!--<ehcache name="shiroCache" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="ehcache.xsd">-->
+<ehcache>
     <diskStore path="java.io.tmpdir"/>
     <defaultCache    
 	    maxElementsInMemory="10000"    
